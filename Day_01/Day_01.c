@@ -46,7 +46,21 @@ main()
         {
             if (inputData.inputs[i] + inputData.inputs[j] == 2020)
             {
-                printf("Result Part 1: %i", inputData.inputs[i] * inputData.inputs[j]);
+                printf("Result Part 1: %i\n", inputData.inputs[i] * inputData.inputs[j]);
+            }
+        }
+    }
+
+    for (int i = 0; i < inputData.length; i++)
+    {
+        for (int j = i + 1; j < inputData.length; j++)
+        {
+            for (int k = j + 1; k < inputData.length; k++)
+            {
+                if (inputData.inputs[i] + inputData.inputs[j] + inputData.inputs[k] == 2020)
+                {
+                    printf("Result Part 2: %i\n", inputData.inputs[i] * inputData.inputs[j] * inputData.inputs[k]);
+                }
             }
         }
     }
