@@ -42,24 +42,42 @@ readInput()
 }
 
 int
-main()
+evaluateSlope(char ** inputs, int inputLength, int right, int down)
 {
-    InputData inputData = readInput();
-    
-    // * Part 1
     int treeCounter = 0;
     int xPos = 0;
 
-    for (int yPos = 0; yPos < inputData.length; yPos++)
+    for (int yPos = 0; yPos < inputLength; yPos += down)
     {
-        if (inputData.inputs[yPos][xPos] == '#')
+        if (inputs[yPos][xPos] == '#')
         {
             treeCounter++;
         }
-        xPos = (xPos + 3) % strlen(inputData.inputs[0]);
+        xPos = (xPos + right) % strlen(inputs[0]);
     }
-    printf("Part 1: %i", treeCounter);
-    
+    return treeCounter;
+}
+
+int
+main()
+{
+    InputData inputData = readInput();
+
+    // * Part 1
+    int result1 = evaluateSlope(inputData.inputs, inputData.length, 3, 1);
+    printf("Part 1: %i\n", result1);
+
+    // * Part 2
+
+    int slope1 = evaluateSlope(inputData.inputs, inputData.length, 1, 1);
+    int slope2 = evaluateSlope(inputData.inputs, inputData.length, 3, 1);
+    int slope3 = evaluateSlope(inputData.inputs, inputData.length, 5, 1);
+    int slope4 = evaluateSlope(inputData.inputs, inputData.length, 7, 1);
+    int slope5 = evaluateSlope(inputData.inputs, inputData.length, 1, 2);
+
+    int result2 = slope1 * slope2 * slope3 * slope4 * slope5;
+
+    printf("Part 2: %i\n", result2);
 
     free(inputData.inputs);
 }
